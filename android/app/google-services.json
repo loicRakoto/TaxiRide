@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "735499765112",
+    "project_id": "taxiride-c8409",
+    "storage_bucket": "taxiride-c8409.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735499765112:android:65329ac1f194359e0a748d",
+        "android_client_info": {
+          "package_name": "com.project.taxi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv2gGrUqHDlmS1pYwoVdoeMnr0Rg4kzsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
