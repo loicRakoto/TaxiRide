@@ -21,6 +21,7 @@ Widget otpVerificationWidget(){
 
             child: Center(
               child: Pinput(
+                length: 6,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 defaultPinTheme: PinTheme(
                   width: 56,

@@ -6,7 +6,7 @@ import 'package:taxi_ride/utils/app_constant.dart';
 import 'package:taxi_ride/views/otp_verfication_screen.dart';
 import 'package:taxi_ride/widget/text_widget.dart';
 
-Widget loginWidget(CountryCode countryCodes, Function onCountryChange){
+Widget loginWidget(CountryCode countryCodes, Function onCountryChange , Function onSubmit){
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 30),
       child:  Column(
@@ -64,7 +64,7 @@ Widget loginWidget(CountryCode countryCodes, Function onCountryChange){
                     flex: 2,
                     child: TextField(
                       onSubmitted: (value){
-                        Get.to(()=>OtpVerficationScreen());
+                        onSubmit(value);
                       },
                       decoration: InputDecoration(
                         hintStyle: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.normal),
