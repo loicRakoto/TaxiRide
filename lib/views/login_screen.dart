@@ -4,6 +4,7 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxi_ride/views/otp_verfication_screen.dart';
+import 'package:taxi_ride/views/profile_setting_screen.dart';
 import 'package:taxi_ride/widget/intro_widget.dart';
 
 import '../widget/login_widget.dart';
@@ -23,7 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
   CountryCode countryCodes =  const CountryCode(name: "Madagascar", code: "MG", dialCode: "+261");
 
   onSubmit(String? input){
-    Get.to(()=>OtpVerficationScreen(countryCodes.dialCode+input!));
+
+     // Get.to(()=>OtpVerficationScreen(countryCodes.dialCode+input!));
+        Get.to(()=> ProfileSettingScreen());
   }
 
   @override
