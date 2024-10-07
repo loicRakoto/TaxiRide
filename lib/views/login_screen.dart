@@ -3,13 +3,11 @@ import 'dart:math';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taxi_ride/views/otp_verfication_screen.dart';
+//import 'package:taxi_ride/views/otp_verfication_screen.dart';
 import 'package:taxi_ride/views/profile_setting_screen.dart';
 import 'package:taxi_ride/widget/intro_widget.dart';
 
 import '../widget/login_widget.dart';
-
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,14 +17,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final countryPicker = const FlCountryCodePicker();
+  CountryCode countryCodes =
+      const CountryCode(name: "Madagascar", code: "MG", dialCode: "+261");
 
-  final countryPicker = const  FlCountryCodePicker();
-  CountryCode countryCodes =  const CountryCode(name: "Madagascar", code: "MG", dialCode: "+261");
-
-  onSubmit(String? input){
-
-     // Get.to(()=>OtpVerficationScreen(countryCodes.dialCode+input!));
-        Get.to(()=> ProfileSettingScreen());
+  onSubmit(String? input) {
+    // Get.to(()=>OtpVerficationScreen(countryCodes.dialCode+input!));
+    Get.to(() => const ProfileSettingScreen());
   }
 
   @override
@@ -39,16 +36,18 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               introWidget(),
-              const SizedBox(height: 50,),
-              loginWidget(countryCodes,()async{
-                final picked= await countryPicker.showPicker(context: context);
+              const SizedBox(
+                height: 50,
+              ),
+              loginWidget(countryCodes, () async {
+                final picked = await countryPicker.showPicker(context: context);
                 // Null check
-                if (picked!= null) {
+                if (picked != null) {
                   setState(() {
-                    countryCodes=picked;
+                    countryCodes = picked;
                   });
                 }
-              },onSubmit),
+              }, onSubmit),
             ],
           ),
         ),

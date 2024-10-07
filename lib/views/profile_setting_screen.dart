@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taxi_ride/utils/app_color.dart';
-import 'package:taxi_ride/utils/app_constant.dart';
 import 'package:taxi_ride/widget/mask_widget.dart';
 import 'package:taxi_ride/widget/text_field_widget.dart';
 import 'package:taxi_ride/widget/text_widget.dart';
@@ -18,7 +17,6 @@ class ProfileSettingScreen extends StatefulWidget {
 }
 
 class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
-
   TextEditingController nameController = TextEditingController();
   TextEditingController cinController = TextEditingController();
   TextEditingController birthdayController = TextEditingController();
@@ -28,7 +26,6 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
     DateTime.now().add(const Duration(days: 1)),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +34,8 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: Get.height*0.4,
+            SizedBox(
+              height: Get.height * 0.4,
               child: Stack(
                 children: [
                   Mask(),
@@ -47,52 +44,62 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         width: 500,
                         height: 180,
                         alignment: Alignment.topCenter,
-                        child: textWidget(text: "Formulaire d'inscription",fontWeight: FontWeight.bold,fontSize: 20,colors: Colors.white)
-                    ),
+                        child: textWidget(
+                            text: "Formulaire d'inscription",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            colors: Colors.white)),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       width: 180,
                       height: 180,
-                      decoration:  BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                        border: Border.all(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          border: Border.all(
+                              color: AppColor.orangeColor, width: 1.5)),
+                      child: const Center(
+                        child: Icon(
+                          Icons.camera_alt_outlined,
                           color: AppColor.orangeColor,
-                          width: 1.5
-                        )
+                          size: 55,
+                        ),
                       ),
-                      child: const Center(child: Icon(Icons.camera_alt_outlined,color: AppColor.orangeColor,size: 55,),),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(height: 50,),
+            const SizedBox(
+              height: 50,
+            ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 23),
+              padding: const EdgeInsets.symmetric(horizontal: 23),
               child: Column(
                 children: [
-                  TextFieldWidget("Nom", Icons.person, nameController,
-                      (value){
-                        if (value == null || value.isEmpty) {
-                          return 'Veuillez saisir votre nom';
-                        }
-                        return null;
-                      }),
-                  const SizedBox(height: 6.0,),
+                  TextFieldWidget("Nom", Icons.person, nameController, (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Veuillez saisir votre nom';
+                    }
+                    return null;
+                  }),
+                  const SizedBox(
+                    height: 6.0,
+                  ),
                   TextFieldWidget("CIN", Icons.credit_card, cinController,
-                          (value){
-                        if (value == null || value.isEmpty) {
-                          return 'Veuillez saisir votre CIN';
-                        }else if(int.tryParse(value) == null){
-                          return "S'il vous plaît, veuillez entrer un nombre valide";
-                        }
-                        return null;
-                      }),
-                  const SizedBox(height: 6.0,),
-
+                      (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Veuillez saisir votre CIN';
+                    } else if (int.tryParse(value) == null) {
+                      return "S'il vous plaît, veuillez entrer un nombre valide";
+                    }
+                    return null;
+                  }),
+                  const SizedBox(
+                    height: 6.0,
+                  ),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,10 +129,12 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           child: TextFormField(
                             readOnly: true,
                             controller: birthdayController,
-                            onTap:  () async {
-                              final values = await showCalendarDatePicker2Dialog(
+                            onTap: () async {
+                              final values =
+                                  await showCalendarDatePicker2Dialog(
                                 context: context,
-                                config: CalendarDatePicker2WithActionButtonsConfig(),
+                                config:
+                                    CalendarDatePicker2WithActionButtonsConfig(),
                                 dialogSize: const Size(325, 370),
                                 borderRadius: BorderRadius.circular(15),
                                 value: _dates,
@@ -134,14 +143,16 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                               if (values != null) {
                                 final selectedDate = values.first;
                                 setState(() {
-                                  birthdayController.text = DateFormat('yyyy-MM-dd').format(selectedDate!);
+                                  birthdayController.text =
+                                      DateFormat('yyyy-MM-dd')
+                                          .format(selectedDate!);
                                 });
                               }
                             },
                             style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xffA7A7A7)),
+                                color: const Color(0xffA7A7A7)),
                             decoration: const InputDecoration(
                                 prefixIcon: Padding(
                                   padding: EdgeInsets.only(left: 10),
@@ -151,52 +162,55 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                                   ),
                                 ),
                                 border: InputBorder.none,
-                                contentPadding: EdgeInsets.symmetric(vertical: 15)
-                            ),
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 15)),
                           ),
                         )
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 6.0,),
-                  TextFieldWidget("Adresse de résidence", Icons.location_city, residenceController,
-                      (value){
-                        if (value == null || value.isEmpty) {
-                          return 'Veuillez saisir votre résidence';
-                        }
-                        return null;
-                      }),
+                  const SizedBox(
+                    height: 6.0,
+                  ),
+                  TextFieldWidget("Adresse de résidence", Icons.location_city,
+                      residenceController, (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Veuillez saisir votre résidence';
+                    }
+                    return null;
+                  }),
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 23),
               child: submitBouton("Soumettre le formulaire"),
             )
-
           ],
         ),
       ),
     );
   }
 
-  Widget submitBouton(String titre){
+  Widget submitBouton(String titre) {
     return MaterialButton(
       minWidth: Get.width,
       height: 50,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       color: AppColor.orangeColor,
-      onPressed:(){
+      onPressed: () {
         print("submit button");
-        CollectionReference users = FirebaseFirestore.instance.collection('utilisateurs');
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('utilisateurs');
         users.add({
           'nom': nameController.text,
           'cin': cinController.text,
           'date_naissance': birthdayController.text,
           'residence': residenceController.text,
-          'photo' : 'lien_photo',
+          'photo': 'lien_photo',
           'passagerDetails': {
             'totalRides': '',
             'notePassager': '',
