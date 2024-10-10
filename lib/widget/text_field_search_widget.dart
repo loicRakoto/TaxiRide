@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_color.dart';
 
 
-Widget textFieldSearchWidget(TextEditingController control,FocusNode FN , String FieldName, IconData IconName, Function(String) onChanged){
+Widget textFieldSearchWidget(TextEditingController control,FocusNode FN , String FieldName, IconData IconName, Function(String) onChanged, RxList<dynamic> Liste){
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 9),
     child: Container(
@@ -41,7 +41,9 @@ Widget textFieldSearchWidget(TextEditingController control,FocusNode FN , String
             suffixIcon: IconButton(
                   icon: const Icon(Icons.clear),
                   onPressed: () {
-                    control.clear();},
+                    control.clear();
+                    Liste.clear();
+                    },
             ),
             prefixIcon: Icon(
               IconName,
